@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
@@ -6,30 +6,23 @@ import Recents from './Components/Recents';
 import Edit from './Components/Edit';
 import Nav from './Components/Nav';
 import uuid from 'uuid-random';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from './actions';
+import { addRecent } from './actions/addRecent';
 
 function App() {
   const [page, setPage] = useState(0);
   const [current, setCurrent] = useState(0);
-  const [ID, setID] = useState("");
+  const [ID, setID] = useState(""); 
+  const storeRecents = useSelector(state => state.recents);
 
-  const recents = [
-    {
-      name: "test0",
-      url: "test.com/test0",
-      content: "test0 code"
-    },
-    {
-      name: "test1",
-      url: "test.com/test1",
-      content: "test1 code"
-    }
-  ]
+  const counter = useSelector(state => state.counter);
+
+
+  const dispatch = useDispatch();
 
   let content;
 
-  const handleSetCurrent = (index) => {
-    console.log(index);
-  }
 
   const setPage1 = () => {
     setPage(1);
@@ -58,13 +51,15 @@ function App() {
     content =
       <div className="App">
         <h1>Endpoints</h1>
+        <h1>{storeRecents.length}</h1>
+        <h1>{counter}</h1>
         <div>
-          <Button variant="primary" >Create</Button>
-          <Recents recentItems={recents} setCurrent={setCurrent} setPage1={setPage1} />
+          <Button variant="primary" onClick={() => dispatch(addRecent()) }>Create</Button>
+          <Recents recentItems={storeRecents} setCurrent={setCurrent} setPage1={setPage1} />
         </div>
       </div>;
   } else if (page === 1) {
-    content = <Edit recents={recents} current={current} setCurrent={setCurrent} setPage1={setPage1} />
+    content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} />
   }
 
   return <div className="App">

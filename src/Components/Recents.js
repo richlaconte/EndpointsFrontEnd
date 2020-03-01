@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import RecentItem from './RecentItem';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function Recents(props) {
   
+    //const [items, setItems] = useState(props.recentItems);
+
+    const items = useSelector(state => state.recents);
+
     const handleSetCurrent = (index) => {
         props.setCurrent(index);
     }
@@ -16,14 +21,12 @@ export default function Recents(props) {
     const setPage1 = () => {
         props.setPage1();
     }
-
-    const recentItems = props.recentItems.map((item, index) => 
-        <RecentItem key={index} name={item.name} content={item.content} index={index} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
-    )
   
     return (
     <div className="container">
-        {recentItems}
+        {items.map((item, index) => 
+            <RecentItem key={index} name={item.name} content={item.content} index={index} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
+        )}
     </div>
   );
 }

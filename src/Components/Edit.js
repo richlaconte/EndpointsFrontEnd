@@ -7,7 +7,9 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
 
 export default function Edit(props) {
-    let [code, setCode] = useState(props.recents[props.current].content);
+    let [code, setCode] = useState("");
+
+    let content = <div><h3>Please select an endpoint to edit.</h3></div>
 
     const handleSetCurrent = (index) => {
         props.setCurrent(index);
@@ -21,13 +23,8 @@ export default function Edit(props) {
         setCode(value);
     }
 
-    return (
-    <div className="edit container-fluid">
-        <div className="row">
-            <div className="col-3 editLeft">
-                <h3>Recent Endpoints</h3>
-                <Recents recentItems={props.recents} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
-            </div>
+    if (props.recents.length > 0) {
+        content =
             <div className="col-9 editMain">
                 <div className="row">
                     <div className="col-6">
@@ -52,8 +49,17 @@ export default function Edit(props) {
                         />
                     </div>
                 </div>
-                
             </div>
+    }
+
+    return (
+    <div className="edit container-fluid">
+        <div className="row">
+            <div className="col-3 editLeft">
+                <h3>Recent Endpoints</h3>
+                <Recents recentItems={props.recents} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
+            </div>
+            {content}
         </div>
     </div>
   );

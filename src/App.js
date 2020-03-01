@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { increment } from './actions';
 import { addRecent } from './actions/addRecent';
 
+const axios = require('axios');
+
 function App() {
   const [page, setPage] = useState(0);
   const [current, setCurrent] = useState(0);

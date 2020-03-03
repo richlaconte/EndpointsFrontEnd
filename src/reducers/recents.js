@@ -10,6 +10,9 @@ const recentsReducer = (state = [], action) => {
                 }
             ]
 
+        case 'SET_RECEMTS':
+            return action.recents
+
         default:
             return state;
     }

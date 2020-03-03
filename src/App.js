@@ -31,14 +31,13 @@ function App() {
     setPage(1);
   }
 
-  const getRecents = () => {
-    console.log("Getting /visitor");
-    axios.get('https://https://endpointzbackend.herokuapp.com/visitor', {
-      id: ID
-    })
+  const getRecents = (ID) => {
+    console.log(`Getting /visitor with id: ${ID}`);
+    console.log(`https://endpointzbackend.herokuapp.com/visitor/${ID}`);
+    axios.get('https://endpointzbackend.herokuapp.com/visitor/' + ID)
       .then(function (response) {
-        console.log(`setting recents: ${response}`);
-        setRecents(response);
+        console.log(response.data);
+        dispatch(setRecents(response.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -46,12 +45,25 @@ function App() {
   }
 
   const createVisitor = (id) => {
-    console.log("Posting /visitor");
-    axios.post('https://https://endpointzbackend.herokuapp.com/visitor', {
+    console.log(`Posting /visitor with id: ${id}`);
+    axios.post('https://endpointzbackend.herokuapp.com/visitor', {
       id: id
     })
       .then(function (response) {
         console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const createEndpoint = () => {
+    axios.post('https://endpointzbackend.herokuapp.com/endpoint', {
+      id: ID
+    })
+      .then(function (response) {
+        console.log(response);
+        getRecents(ID);
       })
       .catch(function (error) {
         console.log(error);
@@ -67,13 +79,13 @@ function App() {
 
   const getCookie = () => {
     let cookies = document.cookie;
-    if (cookies.search("ID")) {
+    if (cookies[0] === "I" && ID === "") {
       let ID = cookies.split("=")[1];
       if (uuid.test(ID)) {
         setID(ID);
-        getRecents();
+        getRecents(ID);
       }
-    } else {
+    } else if (ID === "") {
       createVisitor(createCookie());
     }
   }
@@ -84,10 +96,8 @@ function App() {
     content =
       <div className="App">
         <h1>Endpoints</h1>
-        <h1>{storeRecents.length}</h1>
-        <h1>{counter}</h1>
         <div>
-          <Button variant="primary" onClick={() => dispatch(addRecent())}>Create</Button>
+          <Button variant="primary" onClick={() => createEndpoint()}>Create</Button>
           <Recents recentItems={storeRecents} setCurrent={setCurrent} setPage1={setPage1} />
         </div>
       </div>;

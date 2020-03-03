@@ -25,7 +25,7 @@ export default function Recents(props) {
     return (
     <div className="container">
         {items.map((item, index) => 
-            <RecentItem key={index} name={item.name} content={item.content} index={index} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
+            <RecentItem key={index} name={item.url} content={item.content} index={index} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
         )}
     </div>
   );

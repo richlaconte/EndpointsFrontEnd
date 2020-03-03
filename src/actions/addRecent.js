@@ -1,8 +1,7 @@
-export const addRecent = () => {
+export const addRecent = (url, content) => {
     return {
         type: 'ADD_RECENT',
-        id: '123',
-        name: 'test',
-        content: '<h1>Test</h1>'
+        url: url,
+        content: content
     }
 }

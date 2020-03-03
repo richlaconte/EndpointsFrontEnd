@@ -4,13 +4,12 @@ const recentsReducer = (state = [], action) => {
             return [
                 ...state,
                 {
-                    id: action.id,
-                    name: action.name,
+                    url: action.url,
                     content: action.content
                 }
             ]
 
-        case 'SET_RECEMTS':
+        case 'SET_RECENTS':
             return action.recents
 
         default:

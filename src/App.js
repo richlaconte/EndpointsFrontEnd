@@ -36,7 +36,9 @@ function App() {
     console.log(`https://endpointzbackend.herokuapp.com/visitor/${ID}`);
     axios.get('https://endpointzbackend.herokuapp.com/visitor/' + ID)
       .then(function (response) {
+        console.log(response);
         console.log(response.data);
+
         dispatch(setRecents(response.data));
       })
       .catch(function (error) {
@@ -59,7 +61,8 @@ function App() {
 
   const createEndpoint = () => {
     axios.post('https://endpointzbackend.herokuapp.com/endpoint', {
-      id: ID
+      id: ID,
+      content: ""
     })
       .then(function (response) {
         console.log(response);
@@ -74,6 +77,7 @@ function App() {
     let id = uuid();
     document.cookie = `ID=${id}`;
     console.log("new cookie created.")
+    setID(id);
     return id;
   }
 

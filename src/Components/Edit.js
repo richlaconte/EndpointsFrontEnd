@@ -6,10 +6,38 @@ import Button from 'react-bootstrap/Button';
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
 
+const axios = require('axios');
+
 export default function Edit(props) {
     let [code, setCode] = useState("");
 
     let content = <div><h3>Please select an endpoint to edit.</h3></div>
+
+    let currentCode = props.recents[props.current].content;
+
+    const updateEndpoint = (id, code, current) => {
+        console.log(id);
+        console.log(props.id);
+        console.log(code);
+        console.log(current);
+        axios.post('https://endpointzbackend.herokuapp.com/endpoint/update', {
+            id: props.id,
+            url: props.recents[props.current].url,
+            content: currentCode
+        })
+        .then(function (response) {
+            console.log(response);
+            props.getRecents();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    const handleValueChange = (value) => {
+        currentCode = value;
+        console.log(currentCode);
+    }
 
     const handleSetCurrent = (index) => {
         props.setCurrent(index);
@@ -28,20 +56,20 @@ export default function Edit(props) {
             <div className="col-9 editMain">
                 <div className="row">
                     <div className="col-6">
-                        <h3 style={{textAlign: "left"}}>URL</h3>
+                        <h3 style={{textAlign: "left"}}>URL: {props.recents[props.current].url}</h3>
                     </div>
                     <div className="col-6">
-                        <Button variant="success" style={{ float: "right", textAlign: "right" }}>Save</Button>
+                        <Button variant="success" style={{ float: "right", textAlign: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save</Button>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
                         <AceEditor
-                            value={code}
-                            placeholder={props.recents.content}
+                            value={props.recents[props.current].content}
                             mode="javascript"
                             theme="github"
-                            onValueChange={code => setCode(code)}
+                            //onValueChange={value => handleValueChange(value) }
+                            onChange={handleValueChange}
                             name="codeEditor"
                             editorProps={{ $blockScrolling: true }}
                             width="100%"

@@ -106,7 +106,7 @@ function App() {
         </div>
       </div>;
   } else if (page === 1) {
-    content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} />
+    content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} id={ID} getRecents={() => getRecents(ID)}/>
   }
 
   return <div className="App">

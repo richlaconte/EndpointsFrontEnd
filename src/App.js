@@ -62,7 +62,15 @@ function App() {
   const createEndpoint = () => {
     axios.post('https://endpointzbackend.herokuapp.com/endpoint', {
       id: ID,
-      content: ""
+      content: `let main = (req) => {
+  return {
+    url: "https://domain.com",
+    method: "POST",
+    body: {}
+  }
+}
+    
+main(req);`
     })
       .then(function (response) {
         console.log(response);
@@ -106,7 +114,7 @@ function App() {
         </div>
       </div>;
   } else if (page === 1) {
-    content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} id={ID} getRecents={() => getRecents(ID)}/>
+    content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} id={ID} getRecents={() => getRecents(ID)} />
   }
 
   return <div className="App">

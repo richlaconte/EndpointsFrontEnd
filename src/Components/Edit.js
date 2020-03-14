@@ -103,7 +103,7 @@ export default function Edit(props) {
             <div className="col-9 editMain">
                 <div className="row">
                     <div className="col-10">
-                        <h4 style={{ textAlign: "left" }}>https://endpointzbackend.herokuapp.com/{props.recents[props.current].url}</h4>
+                        <h4 style={{ textAlign: "left" }}>https://endpointzbackend.herokuapp.com/consume/{props.recents[props.current].url}</h4>
                         <Button variant="info" style={{ textAlign: "left" }} onClick={copyUrl} >Copy</Button>
                     </div>
                     <div className="col-2">

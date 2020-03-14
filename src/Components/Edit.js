@@ -13,7 +13,12 @@ export default function Edit(props) {
 
     let content = <div><h3>Please select an endpoint to edit.</h3></div>
 
-    let currentCode = props.recents[props.current].content;
+    let currentCode;
+
+    if (props.recents.length > 0) {
+        currentCode = props.recents[props.current].content;
+    }
+
 
     const updateEndpoint = (id, code, current) => {
         console.log(id);

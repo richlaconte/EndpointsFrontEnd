@@ -89,14 +89,24 @@ export default function Edit(props) {
         setCode(value);
     }
 
+    const copyUrl = () => {
+        let dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        dummy.value = 'https://endpointzbackend.herokuapp.com/' + props.recents[props.current].url;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+    }
+
     if (props.recents.length > 0) {
         content =
             <div className="col-9 editMain">
                 <div className="row">
-                    <div className="col-6">
-                        <h3 style={{ textAlign: "left" }}>URL: {props.recents[props.current].url}</h3>
+                    <div className="col-10">
+                        <h4 style={{ textAlign: "left" }}>https://endpointzbackend.herokuapp.com/{props.recents[props.current].url}</h4>
+                        <Button variant="info" style={{ textAlign: "left" }} onClick={copyUrl} >Copy</Button>
                     </div>
-                    <div className="col-6">
+                    <div className="col-2">
                         <Button variant="success" style={{ float: "right", textAlign: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save</Button>
                     </div>
                 </div>

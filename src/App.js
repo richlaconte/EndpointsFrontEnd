@@ -91,13 +91,19 @@ main(req);`
 
   const getCookie = () => {
     let cookies = document.cookie;
+    console.log(cookies);
     if (cookies[0] === "I" && ID === "") {
+      console.log("inside first if");
       let ID = cookies.split("=")[1];
       if (uuid.test(ID)) {
+        console.log("inside second if");
         setID(ID);
         getRecents(ID);
+      } else {
+        createVisitor(createCookie());
       }
     } else if (ID === "") {
+      console.log("inside else if");
       createVisitor(createCookie());
     }
   }

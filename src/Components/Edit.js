@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Recents from './Recents';
 import AceEditor from "react-ace";
 import Button from 'react-bootstrap/Button';
- 
+
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
 
@@ -20,23 +20,56 @@ export default function Edit(props) {
         console.log(props.id);
         console.log(code);
         console.log(current);
-        axios.post('https://endpointzbackend.herokuapp.com/endpoint/update', {
-            id: props.id,
-            url: props.recents[props.current].url,
-            content: currentCode
-        })
-        .then(function (response) {
-            console.log(response);
-            props.getRecents();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+
+        try {
+            let testCode = "let req = 0;" + currentCode;
+            let value = eval(testCode);
+            if (value.url && value.method && value.body) {
+                axios.post('https://endpointzbackend.herokuapp.com/endpoint/update', {
+                    id: props.id,
+                    url: props.recents[props.current].url,
+                    content: currentCode
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        props.getRecents();
+                        alert(`Saved successfully`);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                let url = "";
+                let method = "";
+                let body = "";
+                if (!value.url) {
+                    url = "url";
+                }
+                if (!value.method) {
+                    method = "method";
+                }
+                if (!value.body) {
+                    body = "body";
+                }
+                alert(`Your returned object is missing: ${url} ${method} ${body}`);
+            }
+        } catch (err) {
+            alert(`Something's wrong with your code. Make sure you are calling a function that returns an object with .url, .method and .body`);
+        }
     }
 
     const handleValueChange = (value) => {
         currentCode = value;
-        console.log(currentCode);
+        try {
+            let value = eval(currentCode);
+            if (value.url) {
+                console.log("object with URL returned");
+            }
+
+        } catch (err) {
+            console.log("error");
+        }
+
     }
 
     const handleSetCurrent = (index) => {
@@ -56,7 +89,7 @@ export default function Edit(props) {
             <div className="col-9 editMain">
                 <div className="row">
                     <div className="col-6">
-                        <h3 style={{textAlign: "left"}}>URL: {props.recents[props.current].url}</h3>
+                        <h3 style={{ textAlign: "left" }}>URL: {props.recents[props.current].url}</h3>
                     </div>
                     <div className="col-6">
                         <Button variant="success" style={{ float: "right", textAlign: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save</Button>
@@ -81,14 +114,14 @@ export default function Edit(props) {
     }
 
     return (
-    <div className="edit container-fluid">
-        <div className="row">
-            <div className="col-3 editLeft">
-                <h3>Recent Endpoints</h3>
-                <Recents recentItems={props.recents} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
+        <div className="edit container-fluid">
+            <div className="row">
+                <div className="col-3 editLeft">
+                    <h3>Recent Endpoints</h3>
+                    <Recents recentItems={props.recents} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
+                </div>
+                {content}
             </div>
-            {content}
         </div>
-    </div>
-  );
+    );
 }

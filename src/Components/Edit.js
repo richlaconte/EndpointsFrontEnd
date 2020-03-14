@@ -92,7 +92,7 @@ export default function Edit(props) {
     const copyUrl = () => {
         let dummy = document.createElement("textarea");
         document.body.appendChild(dummy);
-        dummy.value = 'https://endpointzbackend.herokuapp.com/' + props.recents[props.current].url;
+        dummy.value = 'https://endpointzbackend.herokuapp.com/consume/' + props.recents[props.current].url;
         dummy.select();
         document.execCommand("copy");
         document.body.removeChild(dummy);

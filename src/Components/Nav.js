@@ -1,8 +1,9 @@
 import React from 'react';
 
 export default function RecentItem(props) {
-  
+
     const page0 = () => {
+        props.setCurrent(null);
         props.setPage(0);
     }
 
@@ -13,7 +14,7 @@ export default function RecentItem(props) {
     const page2 = () => {
         props.setPage(2);
     }
-  
+
     return (
         <ul className="nav justify-content-center">
             <li className="nav-item">
@@ -26,5 +27,5 @@ export default function RecentItem(props) {
                 <a className="nav-link" onClick={page2}>About</a>
             </li>
         </ul>
-  );
+    );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function RecentItem(props) {
-  
+
     const setCurrentHandler = () => {
         console.log(props.index)
         props.setCurrent(props.index);
@@ -10,10 +10,16 @@ export default function RecentItem(props) {
             props.updateCode(props.content);
         }
     }
-  
+
+    let className = "row recentItem";
+
+    if (props.current === props.index) {
+        className = "row currentItem";
+    }
+
     return (
-    <div className="row recentItem" onClick={setCurrentHandler}>
-        {props.name}
-    </div>
-  );
+        <div className={className} onClick={setCurrentHandler}>
+            {props.name}
+        </div>
+    );
 }

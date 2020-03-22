@@ -7,13 +7,30 @@
     border-radius: 10px;
     margin-top: 5px;
     padding: 10px;
-    transition: margin-left .5s;
+    transition: margin-left .5s, background-color .5s;
     cursor: pointer;
 }
 
 .recentItem:hover {
+    background-color: #17a2b8;
     margin-left: 10px;
-    text-decoration: underline;
+    border: 1px solid #17a2b8;
+    color: white;
+}
+
+.currentItem {
+    border: solid #17a2b8 1px;
+    background-color: #17a2b8;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    transition: margin-left .5s;
+    cursor: pointer;
+    color: white;
+}
+
+.currentItem:hover {
+    margin-left: 10px;
 }
 
 .editLeft {

@@ -15,7 +15,7 @@ const axios = require('axios');
 
 function App() {
   const [page, setPage] = useState(0);
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(null);
   const [ID, setID] = useState("");
   const storeRecents = useSelector(state => state.recents);
 
@@ -116,7 +116,7 @@ main(req);`
         <h1>Endpoints</h1>
         <div>
           <Button variant="primary" onClick={() => createEndpoint()}>Create</Button>
-          <Recents recentItems={storeRecents} setCurrent={setCurrent} setPage1={setPage1} />
+          <Recents recentItems={storeRecents} setCurrent={setCurrent} current={current} setPage1={setPage1} />
         </div>
       </div>;
   } else if (page === 1) {
@@ -124,7 +124,7 @@ main(req);`
   }
 
   return <div className="App">
-    <Nav page={page} setPage={setPage} />
+    <Nav page={page} setPage={setPage} setCurrent={setCurrent} />
     {content}
   </div>
 

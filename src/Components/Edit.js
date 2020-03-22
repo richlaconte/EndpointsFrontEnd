@@ -15,7 +15,7 @@ export default function Edit(props) {
 
     let currentCode;
 
-    if (props.recents.length > 0) {
+    if (props.recents.length > 0 && props.current) {
         currentCode = props.recents[props.current].content;
     }
 
@@ -98,7 +98,7 @@ export default function Edit(props) {
         document.body.removeChild(dummy);
     }
 
-    if (props.recents.length > 0) {
+    if (props.recents.length > 0 && props.current != null) {
         content =
             <div className="col-9 editMain">
                 <div className="row" style={{ paddingTop: "5px", paddingBottom: "5px" }}>
@@ -160,7 +160,7 @@ export default function Edit(props) {
             <div className="row">
                 <div className="col-3 editLeft">
                     <h3>Recent Endpoints</h3>
-                    <Recents recentItems={props.recents} setCurrent={handleSetCurrent} setPage1={setPage1} updateCode={updateCode} />
+                    <Recents recentItems={props.recents} setCurrent={handleSetCurrent} current={props.current} setPage1={setPage1} updateCode={updateCode} />
                 </div>
                 {content}
             </div>

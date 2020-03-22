@@ -39,7 +39,11 @@ function App() {
         console.log(response);
         console.log(response.data);
 
-        dispatch(setRecents(response.data));
+        if (response.status === 204) {
+          createVisitor(createCookie());
+        } else if (response.status === 200) {
+          dispatch(setRecents(response.data));
+        }
       })
       .catch(function (error) {
         console.log(error);

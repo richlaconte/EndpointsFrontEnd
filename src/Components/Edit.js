@@ -101,16 +101,15 @@ export default function Edit(props) {
     if (props.recents.length > 0) {
         content =
             <div className="col-9 editMain">
-                <div className="row">
-                    <div className="col-10">
-                        <h4 style={{ textAlign: "left" }}>https://endpointzbackend.herokuapp.com/consume/{props.recents[props.current].url}</h4>
-                        <Button variant="info" style={{ textAlign: "left" }} onClick={copyUrl} >Copy</Button>
+                <div className="row" style={{ paddingTop: "5px", paddingBottom: "5px" }}>
+                    <div className="col-10" style={{ paddingTop: "5px" }}>
+                        <h4>Endpoint Name</h4>
                     </div>
-                    <div className="col-2">
-                        <Button variant="success" style={{ float: "right", textAlign: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save</Button>
+                    <div className="col-2" style={{ float: "right" }}>
+                        <Button variant="success" style={{ float: "right", textAlign: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save Changes</Button>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row" id="codeArea">
                     <div className="col-12">
                         <AceEditor
                             value={props.recents[props.current].content}
@@ -125,6 +124,34 @@ export default function Edit(props) {
                         />
                     </div>
                 </div>
+                <div className="container" id="statsArea">
+                    <div className="row">
+                        <div className="col-10" style={{ textAlign: "left" }}>
+                            <h4>Endpoint URL:</h4>
+                        </div>
+                        <div className="col-2" style={{ textAlign: "right" }}>
+                            <Button variant="info" style={{ textAlign: "left" }} onClick={copyUrl} >Copy</Button>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <h5 style={{ textAlign: "left" }}>https://endpointzbackend.herokuapp.com/consume/{props.recents[props.current].url}</h5>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div className="row" style={{ textAlign: "left" }}>
+                        <div className="col-12">
+                            <h4>Hits: 0</h4>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div className="row" style={{ textAlign: "left" }}>
+                        <div className="col-12">
+                            <h4>Age: 0</h4>
+                        </div>
+                    </div>
+                </div>
+
             </div>
     }
 

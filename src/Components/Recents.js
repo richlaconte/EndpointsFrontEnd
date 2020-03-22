@@ -34,7 +34,7 @@ export default function Recents(props) {
     }
 
     return (
-        <div className="container">
+        <div className="container" style={{ maxHeight: "750px", overflow: "scroll" }}>
             {content}
         </div>
     );

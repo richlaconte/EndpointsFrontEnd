@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Recents from './Recents';
 import AceEditor from "react-ace";
 import Button from 'react-bootstrap/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
@@ -15,7 +17,7 @@ export default function Edit(props) {
 
     let currentCode;
 
-    if (props.recents.length > 0 && props.current) {
+    if (props.recents.length > 0 && props.current && props.recents[props.current]) {
         currentCode = props.recents[props.current].content;
     }
 
@@ -98,15 +100,19 @@ export default function Edit(props) {
         document.body.removeChild(dummy);
     }
 
-    if (props.recents.length > 0 && props.current != null) {
+    if (props.recents.length > 0 && props.current != null && props.recents[props.current]) {
         content =
             <div className="col-9 editMain">
                 <div className="row" style={{ paddingTop: "5px", paddingBottom: "5px" }}>
-                    <div className="col-10" style={{ paddingTop: "5px" }}>
+                    <div className="col-8" style={{ paddingTop: "5px" }}>
                         <h4>{props.recents[props.current].url}</h4>
                     </div>
-                    <div className="col-2" style={{ float: "right" }}>
-                        <Button variant="success" style={{ float: "right", textAlign: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save Changes</Button>
+                    <div className="col-4" style={{ textAlign: "right" }}>
+                        <Button variant="success" style={{ float: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save Changes</Button>
+                        <DropdownButton id="dropdown-basic-button" title="Options" alignRight variant="secondary" style={{ float: "right" }}>
+                            <Dropdown.Item onClick={() => { props.deleteEndpoint(props.recents[props.current].url) }}>Delete</Dropdown.Item>
+                        </DropdownButton>
+
                     </div>
                 </div>
                 <div className="row" id="codeArea">

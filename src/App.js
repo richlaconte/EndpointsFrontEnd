@@ -85,6 +85,20 @@ main(req);`
       });
   }
 
+  const deleteEndpoint = (url) => {
+    axios.post('https://endpointzbackend.herokuapp.com/endpoint/delete', {
+      id: ID,
+      url: url
+    })
+      .then(function (response) {
+        console.log(response);
+        getRecents(ID);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   const createCookie = () => {
     let id = uuid();
     document.cookie = `ID=${id}`;
@@ -124,7 +138,7 @@ main(req);`
         </div>
       </div>;
   } else if (page === 1) {
-    content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} id={ID} getRecents={() => getRecents(ID)} />
+    content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} id={ID} deleteEndpoint={deleteEndpoint} getRecents={() => getRecents(ID)} />
   }
 
   return <div className="App">

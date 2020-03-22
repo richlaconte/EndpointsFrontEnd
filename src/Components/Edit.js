@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import Recents from './Recents';
-import "ace-builds";
-import "ace-builds/webpack-resolver";
-import AceEditor from "react-ace";
 import Button from 'react-bootstrap/Button';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';

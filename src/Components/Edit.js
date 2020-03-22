@@ -103,7 +103,7 @@ export default function Edit(props) {
             <div className="col-9 editMain">
                 <div className="row" style={{ paddingTop: "5px", paddingBottom: "5px" }}>
                     <div className="col-10" style={{ paddingTop: "5px" }}>
-                        <h4>Endpoint Name</h4>
+                        <h4>{props.recents[props.current].url}</h4>
                     </div>
                     <div className="col-2" style={{ float: "right" }}>
                         <Button variant="success" style={{ float: "right", textAlign: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save Changes</Button>

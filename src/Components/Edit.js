@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Recents from './Recents';
+import "ace-builds";
+import "ace-builds/webpack-resolver";
 import AceEditor from "react-ace";
 import Button from 'react-bootstrap/Button';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -109,7 +111,7 @@ export default function Edit(props) {
                     </div>
                     <div className="col-4" style={{ textAlign: "right" }}>
                         <Button variant="success" style={{ float: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save Changes</Button>
-                        <DropdownButton id="dropdown-basic-button" title="Options" alignRight variant="secondary" style={{ float: "right" }}>
+                        <DropdownButton id="dropdown-basic-button" title="Options" variant="secondary" style={{ float: "right" }}>
                             <Dropdown.Item onClick={() => { props.deleteEndpoint(props.recents[props.current].url) }}>Delete</Dropdown.Item>
                         </DropdownButton>
 

@@ -9,6 +9,7 @@
     padding: 10px;
     transition: margin-left .5s, background-color .5s;
     cursor: pointer;
+    user-select: none;
 }
 
 .recentItem:hover {
@@ -16,6 +17,7 @@
     margin-left: 10px;
     border: 1px solid #17a2b8;
     color: white;
+    user-select: none;
 }
 
 .currentItem {
@@ -27,10 +29,12 @@
     transition: margin-left .5s;
     cursor: pointer;
     color: white;
+    user-select: none;
 }
 
 .currentItem:hover {
     margin-left: 10px;
+    user-select: none;
 }
 
 .editLeft {

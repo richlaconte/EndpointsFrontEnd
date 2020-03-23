@@ -33,8 +33,8 @@ function App() {
 
   const getRecents = (ID) => {
     console.log(`Getting /visitor with id: ${ID}`);
-    console.log(`https://endpointzbackend.herokuapp.com/visitor/${ID}`);
-    axios.get('https://endpointzbackend.herokuapp.com/visitor/' + ID)
+    console.log(`https://api.captainwebhook.com/visitor/${ID}`);
+    axios.get('https://api.captainwebhook.com/visitor/' + ID)
       .then(function (response) {
         console.log(response);
         console.log(response.data);
@@ -52,7 +52,7 @@ function App() {
 
   const createVisitor = (id) => {
     console.log(`Posting /visitor with id: ${id}`);
-    axios.post('https://endpointzbackend.herokuapp.com/visitor', {
+    axios.post('https://api.captainwebhook.com/visitor', {
       id: id
     })
       .then(function (response) {
@@ -64,7 +64,7 @@ function App() {
   }
 
   const createEndpoint = () => {
-    axios.post('https://endpointzbackend.herokuapp.com/endpoint', {
+    axios.post('https://api.captainwebhook.com/endpoint', {
       id: ID,
       content: `let main = (req) => {
   return {
@@ -86,7 +86,7 @@ main(req);`
   }
 
   const deleteEndpoint = (url) => {
-    axios.post('https://endpointzbackend.herokuapp.com/endpoint/delete', {
+    axios.post('https://api.captainwebhook.com/endpoint/delete', {
       id: ID,
       url: url
     })

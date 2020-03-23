@@ -32,7 +32,7 @@ export default function Edit(props) {
             let testCode = "let req = 0;" + currentCode;
             let value = eval(testCode);
             if (value.url && value.method && value.body) {
-                axios.post('https://endpointzbackend.herokuapp.com/endpoint/update', {
+                axios.post('https://api.captainwebhook.com/endpoint/update', {
                     id: props.id,
                     url: props.recents[props.current].url,
                     content: currentCode
@@ -94,7 +94,7 @@ export default function Edit(props) {
     const copyUrl = () => {
         let dummy = document.createElement("textarea");
         document.body.appendChild(dummy);
-        dummy.value = 'https://endpointzbackend.herokuapp.com/consume/' + props.recents[props.current].url;
+        dummy.value = 'https://api.captainwebhook.com/consume/' + props.recents[props.current].url;
         dummy.select();
         document.execCommand("copy");
         document.body.removeChild(dummy);
@@ -141,7 +141,7 @@ export default function Edit(props) {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <h5 style={{ textAlign: "left" }}>https://endpointzbackend.herokuapp.com/consume/{props.recents[props.current].url}</h5>
+                            <h5 style={{ textAlign: "left" }}>https://api.captainwebhook.com/consume/{props.recents[props.current].url}</h5>
                         </div>
                     </div>
                     <hr></hr>

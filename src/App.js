@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Recents from './Components/Recents';
 import Edit from './Components/Edit';
 import Nav from './Components/Nav';
+import About from './Components/About';
 import uuid from 'uuid-random';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from './actions';
@@ -131,7 +132,8 @@ main(req);`
   if (page === 0) {
     content =
       <div className="App">
-        <h1>Endpoints</h1>
+        <h1>Captain Webhook</h1>
+        <h3>Create programmable endpoints to handle and re-submit your data</h3>
         <div>
           <Button variant="primary" onClick={() => createEndpoint()}>Create</Button>
           <Recents recentItems={storeRecents} setCurrent={setCurrent} current={current} setPage1={setPage1} />
@@ -139,6 +141,8 @@ main(req);`
       </div>;
   } else if (page === 1) {
     content = <Edit recents={storeRecents} current={current} setCurrent={setCurrent} setPage1={setPage1} id={ID} deleteEndpoint={deleteEndpoint} getRecents={() => getRecents(ID)} />
+  } else if (page === 2) {
+    content = <About />;
   }
 
   return <div className="App">

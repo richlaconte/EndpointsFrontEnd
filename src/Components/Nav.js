@@ -18,13 +18,13 @@ export default function RecentItem(props) {
     return (
         <ul className="nav justify-content-center">
             <li className="nav-item">
-                <a className="nav-link active" href="#" onClick={page0}>Home</a>
+                <a className="nav-link active" href="/" onClick={page0}>Home</a>
             </li>
             <li className="nav-item">
                 <a className="nav-link" href="#endpoints" onClick={page1}>Endpoints</a>
             </li>
             <li className="nav-item">
-                <a className="nav-link" onClick={page2}>About</a>
+                <a className="nav-link" href="#about" onClick={page2}>About</a>
             </li>
         </ul>
     );

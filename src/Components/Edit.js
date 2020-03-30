@@ -13,7 +13,9 @@ const axios = require('axios');
 export default function Edit(props) {
     let [code, setCode] = useState("");
 
-    let content = <div><h3>Please select an endpoint to edit.</h3></div>
+    let content = <div><h3>Please select an endpoint to edit.</h3>
+        
+    </div>
 
     let currentCode;
 
@@ -102,12 +104,12 @@ export default function Edit(props) {
 
     if (props.recents.length > 0 && props.current != null && props.recents[props.current]) {
         content =
-            <div className="col-9 editMain">
+            <div className="col-lg-9 order-lg-12 editMain">
                 <div className="row" style={{ paddingTop: "5px", paddingBottom: "5px" }}>
-                    <div className="col-8" style={{ paddingTop: "5px" }}>
+                    <div className="col-lg-8" style={{ paddingTop: "5px" }}>
                         <h4>{props.recents[props.current].url}</h4>
                     </div>
-                    <div className="col-4" style={{ textAlign: "right" }}>
+                    <div className="col-lg-4" style={{ textAlign: "right" }}>
                         <Button variant="success" style={{ float: "right" }} onClick={() => updateEndpoint(props.ID, currentCode, props.current)} >Save Changes</Button>
                         <DropdownButton id="dropdown-basic-button" title="Options" variant="secondary" style={{ float: "right" }}>
                             <Dropdown.Item onClick={() => { props.deleteEndpoint(props.recents[props.current].url) }}>Delete</Dropdown.Item>
@@ -141,7 +143,7 @@ export default function Edit(props) {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <h5 style={{ textAlign: "left" }}>https://api.captainwebhook.com/consume/{props.recents[props.current].url}</h5>
+                            <input type="text" style={{width: "100%"}} value={`https://api.captainwebhook.com/consume/${props.recents[props.current].url}`}></input>
                         </div>
                     </div>
                     <hr></hr>
@@ -164,11 +166,11 @@ export default function Edit(props) {
     return (
         <div className="edit container-fluid">
             <div className="row">
-                <div className="col-3 editLeft">
+                {content}
+                <div className="col-lg-3 d-lg-block d-none d-lg-block order-lg-1 editLeft">
                     <h3>Recent Endpoints</h3>
                     <Recents recentItems={props.recents} setCurrent={handleSetCurrent} current={props.current} setPage1={setPage1} updateCode={updateCode} />
                 </div>
-                {content}
             </div>
         </div>
     );

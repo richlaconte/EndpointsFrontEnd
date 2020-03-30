@@ -132,32 +132,52 @@ export default function Edit(props) {
                         />
                     </div>
                 </div>
-                <div className="container" id="statsArea">
+                <div className="container-fluid">
                     <div className="row">
+                        <div className="col-lg-6 statsArea">
+                        <div className="row">
                         <div className="col-10" style={{ textAlign: "left" }}>
                             <h4>Endpoint URL:</h4>
                         </div>
                         <div className="col-2" style={{ textAlign: "right" }}>
                             <Button variant="info" style={{ textAlign: "left" }} onClick={copyUrl} >Copy</Button>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <input type="text" style={{width: "100%"}} value={`https://api.captainwebhook.com/consume/${props.recents[props.current].url}`}></input>
+                        </div>
+                        <div className="row">
+                            <div className="col-12">
+                                <input type="text" style={{width: "100%"}} value={`https://api.captainwebhook.com/consume/${props.recents[props.current].url}`}></input>
+                            </div>
+                        </div>
+                        <hr></hr>
+                        <div className="row" style={{ textAlign: "left" }}>
+                            <div className="col-12">
+                                <h4>Hits: 0</h4>
+                            </div>
+                        </div>
+                        <hr></hr>
+                        <div className="row" style={{ textAlign: "left" }}>
+                            <div className="col-12">
+                                <h4>Age: 0</h4>
+                            </div>
+                        </div>
+                        </div>
+                        <div className="col-lg-6 statsArea">
+                            <div className="row">
+                                <div className="col-12" style={{marginBottom: "-20px", zIndex: "100"}}>
+                                    <Button variant="success">Refresh</Button>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-6">
+                                    Request Received
+                                </div>
+                                <div className="col-6">
+                                    Request Made
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <hr></hr>
-                    <div className="row" style={{ textAlign: "left" }}>
-                        <div className="col-12">
-                            <h4>Hits: 0</h4>
-                        </div>
-                    </div>
-                    <hr></hr>
-                    <div className="row" style={{ textAlign: "left" }}>
-                        <div className="col-12">
-                            <h4>Age: 0</h4>
-                        </div>
-                    </div>
+                    
                 </div>
 
             </div>

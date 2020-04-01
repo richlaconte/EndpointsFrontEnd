@@ -13,7 +13,7 @@ const axios = require('axios');
 export default function Edit(props) {
     let [code, setCode] = useState("");
 
-    let content = <div><h3>Please select an endpoint to edit.</h3>
+    let content = <div className="col-12"><h3 style={{textAlign: "left"}}>Please select an endpoint to edit.</h3>
         
     </div>
 
